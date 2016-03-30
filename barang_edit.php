@@ -6,13 +6,13 @@ if(isset($_POST['input'])){
 	$hgb=$_POST['hargabeli'];
 	$hgj=$_POST['hargajual'];
 	$stok=$_POST['stok'];
-	$query=mysql_query("update tbbarang set namabarang='$nm', kodejenis='$kdjn', hargabeli='$hgb', hargajual='$hgj', stok='$stok' where kodebarang='$no'") or die (mysql_error());
-	if($query){
+	$queryUpdate=mysql_query("update tbbarang set namabarang='$nm', kodejenis='$kdjn', hargabeli='$hgb', hargajual='$hgj', stok='$stok' where kodebarang='$no'") or die (mysql_error());
+	if($queryUpdate){
 		echo'<script>alert("Data Berhasil Diubah")</script>';
 		echo"<meta http-equiv='refresh' content='0;url=?page=barang_view'>";
 		}
 	else{
-		echo'<script>alert("Gagal Ubah Data")</script>';
+		echo'<script>alert("Gagal Ubah Data "'. mysql_error() .')</script>';
 	}
 	
 }
