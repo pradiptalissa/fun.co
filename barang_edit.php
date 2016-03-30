@@ -1,12 +1,12 @@
 <?php
+$no=@$_GET['kodebarang'];
 if(isset($_POST['input'])){
-	$no=$_GET['kodebarang'];
 	$nm=$_POST['namabarang'];
 	$kdjn=$_POST['kodejenis'];
 	$hgb=$_POST['hargabeli'];
 	$hgj=$_POST['hargajual'];
 	$stok=$_POST['stok'];
-	$query=mysql_query("update tbbarang set namabarang='$nm', kodejenis='$kdjn', hargabeli='$hgb', hargajual='$hgj', stok='$stok' where kodebarang='$no'");
+	$query=mysql_query("update tbbarang set namabarang='$nm', kodejenis='$kdjn', hargabeli='$hgb', hargajual='$hgj', stok='$stok' where kodebarang='$no'") or die (mysql_error());
 	if($query){
 		echo'<script>alert("Data Berhasil Diubah")</script>';
 		echo"<meta http-equiv='refresh' content='0;url=?page=barang_view'>";
@@ -22,8 +22,8 @@ if(isset($_POST['input'])){
 <br>
 <?php
 include "../inc/koneksi.php";
-$data=mysql_query("select * from tbbarang order by kodebarang limit 1");
-$edit=mysql_fetch_object($data);
+$query=mysql_query("select * from tbbarang where kodebarang='$no'") or die (mysql_error());
+$edit=mysql_fetch_object($query);
 ?>
 <form name="barang_edit" method="post" >
 <table width="710" >
